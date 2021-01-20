@@ -11,6 +11,7 @@ module.exports = async (req, res) => {
         'HMAC-SHA1'
     );
     tokens.getOAuthRequestToken({}, (err, token, secret, result) => {
+        res.setHeader('Set-Cookie', [`secret=${secret}; Expires=${Date.toString(Date.now() + 600000)}; HttpOnly`]);
         res.redirect(`https://api.twitter.com/oauth/authorize?oauth_token=${token}`);
     })
 }
