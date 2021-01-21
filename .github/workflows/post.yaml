@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      shell: bash
+    - shell: bash
       env:
         BPH_PASSWORD: ${{ secrets.BPH_PASSWORD }}
     - uses: actions/checkout@v2
