@@ -3,7 +3,7 @@ const axios = require('axios').default;
 run();
 
 function run() {
-    axios.get(`https://bugs-per-hour.amymorgan.vercel.app/api/apoidae/?pass=${process.env.PASS}`)
+    axios.get(`https://bugs-per-hour.amymorgan.vercel.app/api/apoidae/?pass=${process.argv[2]}`)
     .then(res => {
         console.log(res)
     })
