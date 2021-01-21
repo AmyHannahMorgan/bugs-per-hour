@@ -3,8 +3,7 @@ name: Post
 on:
   schedule:
     - cron: '0 */1 * * *'
-
-on: workflow_dispatch
+  workflow_dispatch
 
 jobs:
   build:
