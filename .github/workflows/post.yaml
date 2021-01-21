@@ -16,6 +16,6 @@ jobs:
       with:
         node-version: '12.x'
       env:
-        PASS: ${{ secrets.BPH_PASS }}
+        PASS: ${{ secrets.BPH_PASSWORD }}
     - run: npm ci
     - run: npm run post "$PASS"
