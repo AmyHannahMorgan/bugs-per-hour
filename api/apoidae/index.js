@@ -2,6 +2,24 @@ const axios = require('axios').default;
 const Twitter = require('twitter');
 const { Writable, Duplex } = require('stream');
 const limit = 100000;
+const taxons = [
+    '4334',
+    '10544522',
+    '4332',
+    '10111891',
+    '10614842',
+    '7906',
+    '4951600',
+    '4671595',
+    '9846461',
+    '4352',
+    '7901',
+    '7905',
+    '7908',
+    '7911',
+    '4345',
+    '7916'
+]
 
 module.exports = async (req, res) => {
     if(process.env.bph_pass === req.query.pass){
@@ -13,7 +31,7 @@ module.exports = async (req, res) => {
             access_token_secret: process.env.apoidae_secret
         });
     
-        let accReq = await axios.get(`https://api.gbif.org/v1/occurrence/search?taxon_key=4334&taxon_key=10544522&taxon_key=4332&taxon_key=10111891&taxon_key=10614842&taxon_key=7906&taxon_key=4951600&taxon_key=4671595&taxon_key=9846461&taxon_key=4352&taxon_key=7901&taxon_key=7905&taxon_key=7908&taxon_key=7911&taxon_key=4345&taxon_key=7916&offset=${rng(0, limit)}&datasetKey=50c9509d-22c7-4a22-a47d-8c48425ef4a7&limit=1&mediaType=StillImage`);
+        let accReq = await axios.get(`https://api.gbif.org/v1/occurrence/search?taxon_key=${taxons[rng(0, taxons.length)]}&offset=${rng(0, limit)}&datasetKey=50c9509d-22c7-4a22-a47d-8c48425ef4a7&limit=1&mediaType=StillImage`);
         let imageReq = await axios.get(accReq.data.results[0].media[0].identifier, {
             responseType: 'stream'
         });
