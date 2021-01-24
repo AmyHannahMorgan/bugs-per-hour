@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
             access_token_secret: process.env.isopods_secret
         });
     
-        let accReq = await axios.get(`https://api.gbif.org/v1/occurrence/search?taxon_key=643&offset=${rng(0, limit)}&limit=1&mediaType=StillImage`);
+        let accReq = await axios.get(`https://api.gbif.org/v1/occurrence/search?taxon_key=643&offset=${rng(0, limit)}&datasetKey=50c9509d-22c7-4a22-a47d-8c48425ef4a7&limit=1&mediaType=StillImage`);
         let imageReq = await axios.get(accReq.data.results[0].media[0].identifier, {
             responseType: 'stream'
         });
